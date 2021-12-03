@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<form action="/print/" mathod="post">
+<form action="/print/" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form }}
 	<input type="submit" value="Submit">

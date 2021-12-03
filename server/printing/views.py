@@ -1,12 +1,14 @@
 from django.shortcuts import render
 
 from .forms import SubmissionForm
+from .controllers import store_file
 
 def submit_gcode(request):
     if request.method == 'POST':
-        form = SubmissionForm(request.POST)
+        print()
+        form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
+            store_file(request.FILES['gcode'])
     else:
         form = SubmissionForm()
 
