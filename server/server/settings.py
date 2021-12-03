@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'printing.apps.PrintingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +53,20 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'server.urls'
 
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [BASE_DIR / "matikuj_app/templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                'django.contrib.auth.context_processors.auth',
+            ],
+            'environment':'server.jinja2.environment',
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
