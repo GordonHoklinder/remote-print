@@ -1,5 +1,6 @@
 from django.urls import include, path
+from .views import *
 
 urlpatterns = [
-    path('print/', views.submit_gcode, name='print'),
+    path('print/', submit_gcode, name='print'),
 ]
