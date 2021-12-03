@@ -2,4 +2,4 @@ from django import forms
 
 
 class SubmissionForm(forms.Form):
-    pass
+    token = forms.CharField(label='Verification token')

@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 
-HELLOOOO
+<form action="/print/" mathod="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit">
+</form>
 
 {% endblock %}
