@@ -21,4 +21,3 @@ def store_file(file):
 def log(message):
     with default_storage.open(LOG_PATH, 'a') as f:
         f.write(message + '\n')
-    

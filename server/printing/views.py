@@ -9,9 +9,7 @@ def submit_gcode(request):
         form = SubmissionForm(request.POST, request.FILES)
         # Temporary token.
         # TODO: enhance security
-        log(str(form['token'].field))
-        log(str(form))
-        if form.is_valid() and form['token'].field == 'uKh+1U1j%s"Zt]k,':
+        if form.is_valid() and form['token'].value() == 'uKh+1U1js"Zt]k,':
             store_file(request.FILES['gcode'])
     else:
         form = SubmissionForm()
