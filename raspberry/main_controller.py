@@ -1,5 +1,5 @@
 from .file_loader import *
-from gcode_sender import print_file
+from gcode_sender import print_file, is_printing
 from enum import Enum
 
 class PrinterState(str, Enum):
@@ -31,7 +31,8 @@ def check_for_new_prints():
 
 
 def update_printer_state():
-    pass
+    if not is_printing():
+        set_state(PrinterState.Idle)
 
 
 
