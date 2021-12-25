@@ -31,7 +31,17 @@ Clone this repository on your raspberry `git clone https://www.github.com/Gordon
 
 Next, create the file `server_address` using your favourite text editor `vim remote-print/raspberry/server_address` and write there the ssh target (i.e. `username@ip.address.of.the.server`).
 
+Install the dependencies by `pip install -r remote-print/raspberry/requirements.txt` (recommended to a virual environment) and run the program `python3 remote-print/raspberry/main_controller.py`.
 
+## Wrap up
+
+You're ready to print!
+
+Try to submit a .gcode file on the server and your printer should automatically start the print.
+
+# Remarks
+
+This project was created as a seminary project for the course Programming 1 in the Bachelor's programme Computer Science at Charles University.
 
 
 
