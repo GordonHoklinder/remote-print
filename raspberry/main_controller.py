@@ -1,6 +1,7 @@
 from .file_loader import *
 from gcode_sender import print_file, is_printing
 from enum import Enum
+from time import sleep
 
 class PrinterState(str, Enum):
     Printing = 'printing',
@@ -43,3 +44,10 @@ def check_for_changes():
     elif state == PrinterState.Printing:
         update_printer_state()
 
+def run():
+    while True:
+        check_for_changes()
+        sleep(10)
+
+if __name__ == "__main__":
+    run()
