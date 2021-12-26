@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 
 from .forms import SubmissionForm
-from .controllers import store_file, log
+from .controllers import store_file, log, load_print_history
 
 @login_required(login_url='/login/')
 def submit_gcode(request):
@@ -17,6 +17,12 @@ def submit_gcode(request):
 
     content = {'form': form,}
     return render(request, 'form.html', content)
+
+
+@login_required(login_url='/login/')
+def show_history(request):
+    content = {'history': load_print_history()}
+    return render(request, 'history.html', content)
 
 
 def login_request(request):
