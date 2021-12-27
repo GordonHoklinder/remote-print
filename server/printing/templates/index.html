@@ -3,8 +3,8 @@
 {% block above_form %}
 	<h1> Remote Print </h2>
 	<p> The current state is: <strong> {{ printer_state }} </strong></p>
-	{% if printer_state != idle %}
-	<p> It is not possible to print, when there are more prints, as it would lead to a collision. </p>
+	{% if printer_state != 'idle' %}
+	<p> At this moment it is not possible to set a print, when a print is running, as it would lead to a collision. Always check there's nothing on the printer board when staritng a print. </p>
 	{% endif %}
 {% endblock %}
 

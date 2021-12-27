@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang=en>
 
+	{% load static %}
 	<head>
 		<meta charset="UTF8">
 		<title>Remote Print</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	</head>
 	<body>
-		<div class="nav-bar">
-			<div class="nav-bar-item">
-				<a href="/">Print</a>
-			</div>
-			<div class="nav-bar-item">
-				<a href="/history/">History</a>
+		<div class="navbar-strip">
+			<div class="navbar">
+				<div class="navbar-item">
+					<a href="/">Print</a>
+				</div>
+				<div class="navbar-item">
+					<a href="/history/">History</a>
+				</div>
 			</div>
 		</div>
 		<main>
