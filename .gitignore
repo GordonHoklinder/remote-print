@@ -3,4 +3,6 @@
 **/db.sqlite3
 **/logs/**
 **/bin/**
+**/gcode-files/**
+**/in-queue.tsv
 
