@@ -1,24 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-
- 	<table>
-	 <thead>
-		<tr>
-			<th>File</th>
-			<th>Status</th>
-		</tr>
-	 </thead>
-	 <tbody>
-		 {% for row in history %}
-				<tr>
-					{% for column in row %}
-					<td>
-						{{ column }}
-					</td>
-					{% endfor %}
-				</tr>
-		 {% endfor %}
-	 </tbody>
-	</table>
-
+	<h1> Printing history </h1>
+	{% if history %}
+		<table>
+		 <thead>
+			<tr>
+				<th>File</th>
+				<th>Status</th>
+			</tr>
+		 </thead>
+		 <tbody>
+			 {% for row in history %}
+					<tr>
+						{% for column in row %}
+						<td>
+							{{ column }}
+						</td>
+						{% endfor %}
+					</tr>
+			 {% endfor %}
+		 </tbody>
+		</table>
+	{% else %}
+		<p>The printing history is empty. </p>
+	{% endif %}
 {% endblock %}
