@@ -1,8 +1,8 @@
 import fabric
 from typing import List
 
-FILE_QUEUE_PATH = 'remote-print/server/in-queue.tsv'
-STATE_PATH = 'remote-print/server/state.txt'
+FILE_QUEUE_PATH = 'remote-print/server/gcode-files/in-queue.tsv'
+STATE_PATH = 'remote-print/server/gcode-files/state.txt'
 
 def get_ssh_server_address() -> str:
     with open('server_address', 'r') as address_file:
