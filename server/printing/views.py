@@ -4,19 +4,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 
 from .forms import SubmissionForm
-from .controllers import store_file, log, load_print_history
+from .controllers import store_file, log, load_print_history, get_printing_state
 
 @login_required(login_url='/login/')
 def submit_gcode(request):
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid() and get_printer_state() == 'idle':
             store_file(request.FILES['gcode'])
     else:
         form = SubmissionForm()
 
-    content = {'form': form,}
-    return render(request, 'form.html', content)
+    content = {'form': form, 'printer_state': get_printing_state()}
+    return render(request, 'index.html', content)
 
 
 @login_required(login_url='/login/')

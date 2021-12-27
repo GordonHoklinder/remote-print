@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
+{% block above_form %}
+{% endblock %}
+
 <form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form.as_p }}

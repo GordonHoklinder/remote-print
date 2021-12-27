@@ -1,0 +1,10 @@
+{% extends "form.html" %}
+
+{% block above_form %}
+	<h1> Remote Print </h2>
+	<p> The current state is: <strong> {{ printer_state }} </strong></p>
+	{% if printer_state != idle %}
+	<p> It is not possible to print, when there are more prints, as it would lead to a collision. </p>
+	{% endif %}
+{% endblock %}
+
