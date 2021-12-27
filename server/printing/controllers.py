@@ -10,9 +10,9 @@ LOG_PATH = 'logs/runtime-log.txt'
 
 def clear_file_name(file_name: str) -> str:
     time_stamp = '=' + datetime.datetime.now().strftime('%d-%m-%y-%H-%M') + '.'
-    file_name = re.sub(r'[=\\\w/]+', '_', file_name)
+    file_name = re.sub(r'[=\\\s/]+', '_', file_name)
     split_file_name = file_name.rsplit('.', 1)
-    split_file_name[0] = split_file_name[0].replaceAll('.', '_')
+    split_file_name[0] = split_file_name[0].replace('.', '_')
     return GCODE_FOLDER_PREFIX + time_stamp.join(split_file_name)
 
 
