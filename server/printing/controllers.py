@@ -31,6 +31,7 @@ def store_file(file):
     file_path = save_file(file)
     add_file_path(file_path)
 
+
 def read_file(file_path):
     if not os.path.exists(file_path): return None
     with open(file_path, 'r') as f:
