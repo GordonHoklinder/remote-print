@@ -4,6 +4,7 @@ from typing import List
 FILE_QUEUE_PATH = 'remote-print/server/gcode-files/in-queue.tsv'
 STATE_PATH = 'remote-print/server/gcode-files/state.txt'
 
+
 def get_ssh_server_address() -> str:
     with open('server_address', 'r') as address_file:
         return address_file.read().strip()

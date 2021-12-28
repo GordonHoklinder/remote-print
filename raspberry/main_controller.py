@@ -1,5 +1,5 @@
 from .file_loader import *
-from gcode_sender import print_file, is_printing
+from gcode_sender import GcodeSender
 from enum import Enum
 from time import sleep
 
@@ -18,36 +18,39 @@ class FileState(str, Enum):
 
 last_file_index = None
 
+class MainController:
+    def __init__(self):
+        self.gcode_sender = GcodeSender(None)
 
-def check_for_new_prints():
-    files_in_queue = get_queue_files()
-    for i in range(len(files_in_queue)):
-        filename, file_state = files_in_queue[i]
-        if file_state == FileState.waiting:
-            last_file_index = i
-            rewrite_ith_state(last_file_index, FileState.Running)
-            print_file(read_file(filename), filename)
-            set_state(PrinterState.Printing)
-            return
-
-
-def update_printer_state():
-    if not is_printing():
-        set_state(PrinterState.Idle)
+    def check_for_new_prints(self):
+        files_in_queue = get_queue_files()
+        for i in range(len(files_in_queue)):
+            filename, file_state = files_in_queue[i]
+            if file_state == FileState.waiting:
+                last_file_index = i
+                rewrite_ith_state(last_file_index, FileState.Running)
+                self.gcode_sender.print_file(read_file(filename), filename)
+                set_state(PrinterState.Printing)
+                return
 
 
+    def update_printer_state(self):
+        if not self.gcode_sender.is_printing():
+            set_state(PrinterState.Idle)
 
-def check_for_changes():
-    state = get_state()
-    if state == PrinterState.Idle:
-        check_for_new_prints()
-    elif state == PrinterState.Printing:
-        update_printer_state()
 
-def run():
-    while True:
-        check_for_changes()
-        sleep(10)
+
+    def check_for_changes(self):
+        state = get_state()
+        if state == PrinterState.Idle:
+            self.check_for_new_prints()
+        elif state == PrinterState.Printing:
+            self.update_printer_state()
+
+    def run(self):
+        while True:
+            self.check_for_changes()
+            sleep(10)
 
 if __name__ == "__main__":
-    run()
+    MainController().run()
