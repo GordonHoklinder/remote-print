@@ -7,7 +7,8 @@ class GcodeSender:
     prusa: None
 
     def send_gcode(self, gcode: str) -> str:
-        pass
+        # Testing
+        print(gcode)
 
     def send_file(self, gcodes: str, filename: str):
         # Start writing to a file.
