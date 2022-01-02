@@ -1,4 +1,4 @@
-from .file_loader import *
+from file_loader import *
 from gcode_sender import GcodeSender
 from enum import Enum
 from time import sleep
