@@ -1,8 +1,10 @@
 import fabric
 from typing import List
 
-FILE_QUEUE_PATH = 'remote-print/server/gcode-files/in-queue.tsv'
-STATE_PATH = 'remote-print/server/gcode-files/state.txt'
+SERVER_APP_LOCATION = 'remote-print/server/'
+
+FILE_QUEUE_PATH = SERVER_APP_LOCATION + 'gcode-files/in-queue.tsv'
+STATE_PATH = SERVER_APP_LOCATION + 'gcode-files/state.txt'
 
 
 
@@ -36,7 +38,7 @@ def init_server_files():
 
 def get_queue_files() -> List[List[str]]:
     file = read_file(FILE_QUEUE_PATH)
-    return [tuple(line.split('\t')) for line in file.split('\n') if line]
+    return [(SERVER_APP_LOCATION + line).split('\t') for line in file.split('\n') if line]
 
 
 def get_state() -> str:

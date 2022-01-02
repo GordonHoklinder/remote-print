@@ -25,10 +25,9 @@ class MainController:
 
     def check_for_new_prints(self):
         files_in_queue = get_queue_files()
-        print('fiq:',files_in_queue)
         for i in range(len(files_in_queue)):
             filename, file_state = files_in_queue[i]
-            if file_state == FileState.waiting:
+            if file_state == FileState.Waiting:
                 last_file_index = i
                 rewrite_ith_state(last_file_index, FileState.Running)
                 self.gcode_sender.print_file(read_file(filename), filename)
@@ -44,7 +43,6 @@ class MainController:
 
     def check_for_changes(self):
         state = get_state()
-        print(state)
         if state == PrinterState.Idle:
             self.check_for_new_prints()
         elif state == PrinterState.Printing:
@@ -55,7 +53,6 @@ class MainController:
             self.check_for_changes()
             sleep(10)
 
-print('hi')
 
 if __name__ == "__main__":
     MainController().run()
