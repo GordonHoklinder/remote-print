@@ -29,6 +29,9 @@ DEBUG = False
 # TODO: FILL IN THE ALLOWED HOSTS!
 ALLOWED_HOSTS = []
 
+# Path to static files.
+STATIC_URL = '/static/'
+
 # Application definition
 
 INSTALLED_APPS = [
