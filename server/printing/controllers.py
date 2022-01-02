@@ -28,7 +28,7 @@ def add_file_path(file_path):
 
 
 def store_file(file):
-    file_path = save_file(file)
+    file_path = save_file(file).split('/')[-1]
     add_file_path(file_path)
 
 
@@ -41,7 +41,7 @@ def read_file(file_path):
 def load_print_history():
     history = read_file(TSV_PATH)
     if history is None: return []
-    return [re.split(r'[\t=]', line) for line in history.split('\n')]
+    return [re.split(r'[\t=\.]', line) for line in history.split('\n')]
 
 
 def get_printing_state() -> str:
