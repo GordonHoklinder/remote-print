@@ -10,7 +10,7 @@ from .controllers import store_file, log, load_print_history, get_printing_state
 def submit_gcode(request):
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
-        if form.is_valid() and get_printer_state() == 'idle':
+        if form.is_valid() and get_printing_state() == 'idle':
             store_file(request.FILES['gcode'])
     else:
         form = SubmissionForm()

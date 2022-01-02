@@ -4,14 +4,14 @@ import re
 from typing import List
 import os.path
 
-GCODE_FOLDER_PREFIX = '/gcode-files/'
+GCODE_FOLDER_PREFIX = 'gcode-files/'
 TSV_PATH = GCODE_FOLDER_PREFIX + 'in-queue.tsv'
 LOG_PATH = 'logs/runtime-log.txt'
 STATE_PATH = GCODE_FOLDER_PREFIX + 'state.txt'
 
 
 def clear_file_name(file_name: str) -> str:
-    time_stamp = '=' + datetime.datetime.now().strftime('%d-%m-%y-%H-%M') + '.'
+    time_stamp = '_' + datetime.datetime.now().strftime('%d-%m-%y-%H-%M') + '.'
     file_name = re.sub(r'[=\\\s/]+', '_', file_name)
     split_file_name = file_name.rsplit('.', 1)
     split_file_name[0] = split_file_name[0].replace('.', '_')
