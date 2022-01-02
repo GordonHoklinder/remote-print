@@ -38,6 +38,8 @@ The views were written with the Django mantra *keep views thin* in mind. Due to 
 
 The file `forms.py` provides a definition of forms which are passed to the frontend in the views. These implement the structure of all the frontend forms.
 
+The file `tests.py` contains unit tests for the backend.
+
 ### Front-end files
 
 All the HTML pages are stored in the folder `server/printing/templates`.
@@ -45,6 +47,8 @@ All the HTML pages are stored in the folder `server/printing/templates`.
 The basic structure of each HTML page is defined in the file `layout.html` which is included by all the other HTML files.
 
 `form.html` defines a simple pages including a Django form. It's used both in gcode sending and in login.
+
+The styles are defined in the file `server/printing/static/style.css` which defines the basic styling for all pages.
 
 ## Raspberry
 
@@ -55,3 +59,7 @@ The heart of the application running on raspberry is the python file `main_contr
 The file `gcode_sender.py` is responsible for communication with the 3D printer and sending appropriate gcodes to the printer.
 
 The file `file_loader.py` handles reading from and writing to the files on the server. It connects to the server via ssh and returns results of appropriate bash commands to the high level functions.
+
+`tests.py` contains unit tests for the code on raspberry.
+
+
