@@ -5,7 +5,6 @@ This project aims to create an extremly simple way how to print on a 3D Prusa Mi
 For a printer which is in a network where it's possible to set up a public server, Octoprint (see https://www.octoprint.org) may be a better solution.
 However if this is not the case, Octoprint cannot be used and this project provides an alternative in such case.
 
-You can learn more about the structure of the project in the programmer's documentation.
 
 # How to use it
 
@@ -39,9 +38,15 @@ You're ready to print!
 
 Try to submit a .gcode file on the server and your printer should automatically start the print.
 
-# Remarks
+# Final notes
 
 This project was created as a seminary project for the course Programming 1 in the Bachelor's programme Computer Science at Charles University.
+
+You can learn more about the structure of the project in the programmer's documentation.
+
+The code in this repository can be used as describen in LICENSE.
+
+If you've found any issues or there are any features missing, do not hasitate to raise an issue or create a pull request.
 
 
 
