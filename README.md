@@ -38,13 +38,22 @@ You're ready to print!
 
 Try to submit a .gcode file on the server and your printer should automatically start the print.
 
+## Troubleshooting
+
+### Different type of printer
+
+It's possible to use Remote Print with any type of 3D printer, not just Prusa Mini. The only thing you need to do is to replace the gcodes in `remote-print/printing/` with the ones corresponding to your printer.
+
+### Custom location of the server app
+If you did not clone this repository on the server into your home folder, you may be getting errors on your raspberry. To solve this, change the `SERVER_APP_LOCATION` in the file `remote-print/raspberry/file_loader.py` appropriately.
+
 # Final notes
 
 This project was created as a seminary project for the course Programming 1 in the Bachelor's programme Computer Science at Charles University.
 
 You can learn more about the structure of the project in the programmer's documentation.
 
-The code in this repository can be used as describen in LICENSE.
+The code in this repository can be used as described in LICENSE.
 
 If you've found any issues or there are any features missing, do not hasitate to raise an issue or create a pull request.
 
