@@ -1,5 +1,7 @@
 # About
 
+The project is currently under a construct and does not work yet. Hopefully it will be finalized by the end of February 2022.
+
 This project aims to create an extremly simple way how to print on a 3D Prusa Mini printer in a private network.
 
 For a printer which is in a network where it's possible to set up a public server, Octoprint (see https://www.octoprint.org) may be a better solution.
@@ -17,8 +19,6 @@ First clone this repository `git clone https://www.github.com/GordonHoklinder/re
 Then set up the server. If you've never done this, I found this guide useful: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04 .
 
 You should be able to get to see the web app after accessing the server's ip address.
-
-<!-- TODO: signing in -->
 
 ## Setting up raspberry
 
