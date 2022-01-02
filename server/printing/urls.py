@@ -5,4 +5,5 @@ urlpatterns = [
     path('', submit_gcode, name='print'),
     path('history/', show_history, name='history'),
     path('login/', login_request, name='login'),
+    path('logout/', logout_request, name='logout'),
 ]

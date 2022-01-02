@@ -16,6 +16,11 @@
 				<div class="navbar-item">
 					<a href="/history/">History</a>
 				</div>
+				{% if request.user.is_authenticated %}
+					<div class="navbar-item">
+						<a href="/logout/">Log out</a>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 		<main>
