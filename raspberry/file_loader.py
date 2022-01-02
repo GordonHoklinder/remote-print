@@ -25,13 +25,13 @@ def read_file(filepath: str) -> str:
     command = f'cat {filepath}'
     return ssh_execute_command(command).stdout
 
-def write_file(filepath: str, text: str):
-    command = f'printf "{text}" > {filepath}'
+def write_file(filepath: str, text: str, append: str = False):
+    command = f'printf "{text}" >{">" if append else ""} {filepath}'
     ssh_execute_command(command)
 
 def init_server_files():
-    write_file(FILE_QUEUE_PATH, '')
-    write_file(STATE_PATH, '')
+    write_file(FILE_QUEUE_PATH, '', True)
+    write_file(STATE_PATH, '', True)
 
 
 def get_queue_files() -> List[List[str]]:
@@ -40,7 +40,7 @@ def get_queue_files() -> List[List[str]]:
 
 
 def get_state() -> str:
-    return read_file(STATE_PATH).strip()
+    return read_file(STATE_PATH).strip() or 'idle'
 
 
 def set_state(state: str):
