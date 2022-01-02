@@ -16,20 +16,20 @@ class FileState(str, Enum):
     Error = 'error'
 
 
-last_file_index = None
 
 class MainController:
     def __init__(self):
         self.gcode_sender = GcodeSender(None)
         init_server_files()
+        self.last_file_index = None
 
     def check_for_new_prints(self):
         files_in_queue = get_queue_files()
         for i in range(len(files_in_queue)):
             filename, file_state = files_in_queue[i]
             if file_state == FileState.Waiting:
-                last_file_index = i
-                rewrite_ith_state(last_file_index, FileState.Running)
+                self.last_file_index = i
+                rewrite_ith_state(self.last_file_index, FileState.Running)
                 self.gcode_sender.print_file(read_file(filename), filename)
                 set_state(PrinterState.Printing)
                 return
@@ -38,6 +38,9 @@ class MainController:
     def update_printer_state(self):
         if not self.gcode_sender.is_printing():
             set_state(PrinterState.Idle)
+            if self.last_file_index is not None:
+                rewrite_ith_state(self.last_file_index, FileState.Done)
+                self.last_file_index = None
 
 
 

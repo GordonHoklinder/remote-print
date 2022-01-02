@@ -1,7 +1,7 @@
 import fabric
 from typing import List
 
-SERVER_GCODE_LOCATION = '~/remote-print/server/gcode-files/'
+SERVER_GCODE_LOCATION = 'remote-print/server/gcode-files/'
 
 FILE_QUEUE_PATH = 'in-queue.tsv'
 STATE_PATH = 'state.txt'
@@ -28,7 +28,7 @@ def read_file(filepath: str) -> str:
     return ssh_execute_command(command).stdout
 
 def write_file(filepath: str, text: str, append: str = False):
-    command = f'printf "{text}" >{">" if append else ""} {filepath}'
+    command = f'printf "{text}" >{">" if append else ""} {SERVER_GCODE_LOCATION}{filepath}'
     ssh_execute_command(command)
 
 def init_server_files():
@@ -52,6 +52,6 @@ def set_state(state: str):
 def rewrite_ith_state(i: int, new_state: str):
     files = get_queue_files()
     files[i][1] = new_state
-    files = '\n'.join(['\t'.join(file) for file in files])
+    files = '\n'.join(['\t'.join(file) for file in files]) + '\n'
     write_file(FILE_QUEUE_PATH, files)
 

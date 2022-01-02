@@ -9,7 +9,7 @@ class GcodeSender:
     def send_gcode(self, gcode: str) -> str:
         # Testing
         print(gcode)
-        return 'ok'
+        return 'Not printing'
 
     def send_file(self, gcodes: str, filename: str):
         # Start writing to a file.
