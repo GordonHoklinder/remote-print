@@ -5,6 +5,8 @@ FILE_QUEUE_PATH = 'remote-print/server/gcode-files/in-queue.tsv'
 STATE_PATH = 'remote-print/server/gcode-files/state.txt'
 
 
+
+
 def get_ssh_server_address() -> str:
     with open('server_address', 'r') as address_file:
         return address_file.read().strip()
@@ -18,14 +20,18 @@ def ssh_execute_command(command: str):
     return connection.run(command)
 
 
+
 def read_file(filepath: str) -> str:
     command = f'cat {filepath}'
     return ssh_execute_command(command).stdout
 
-
 def write_file(filepath: str, text: str):
     command = f'printf "{text}" > {filepath}'
     ssh_execute_command(command)
+
+def init_server_files():
+    write_file(FILE_QUEUE_PATH, '')
+    write_file(STATE_PATH, '')
 
 
 def get_queue_files() -> List[List[str]]:
@@ -44,6 +50,6 @@ def set_state(state: str):
 def rewrite_ith_state(i: int, new_state: str):
     files = get_queue_files()
     files[i][1] = new_state
-    files = '\n'.join['\t'.join(file) for file in files]
+    files = '\n'.join(['\t'.join(file) for file in files])
     write_file(FILE_QUEUE_PATH, files)
 

@@ -21,6 +21,7 @@ last_file_index = None
 class MainController:
     def __init__(self):
         self.gcode_sender = GcodeSender(None)
+        init_server_files()
 
     def check_for_new_prints(self):
         files_in_queue = get_queue_files()
