@@ -24,7 +24,7 @@ def save_file(file) -> str:
 
 def add_file_path(file_path):
     with default_storage.open(TSV_PATH, 'a') as f:
-        f.write(file_path + '\n')
+        f.write(file_path + '\twaiting\n')
 
 
 def store_file(file):
