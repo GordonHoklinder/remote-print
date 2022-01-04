@@ -19,7 +19,7 @@ class FileState(str, Enum):
 
 class MainController:
     def __init__(self):
-        self.gcode_sender = GcodeSender(None)
+        self.gcode_sender = GcodeSender()
         init_server_files()
         self.last_file_index = None
 

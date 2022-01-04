@@ -1,15 +1,17 @@
-from dataclasses import dataclass
 import os
+import serial
+import time
 
+USB_PORT = '/dev/ttyUSB0'
+BAUD_RATE = 115200
 
-@dataclass
 class GcodeSender:
-    prusa: None
+    def __init__(self):
+        self.prusa = serial.Serial(USB_PORT, BAUD_RATE)
 
     def send_gcode(self, gcode: str) -> str:
-        # Testing
-        print(gcode)
-        return 'Not printing'
+        ser = serial.Serial(USB_PORT, BAUD_RATE)
+        return "Not printing"
 
     def send_file(self, gcodes: str, filename: str):
         # Start writing to a file.

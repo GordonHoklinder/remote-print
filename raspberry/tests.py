@@ -4,7 +4,7 @@ from gcode_sender import GcodeSender
 
 class GcodeSenderTests(unittest.TestCase):
     def setUp(self):
-        self.gcode_sender = GcodeSender(None)
+        self.gcode_sender = GcodeSender()
 
     def mock_send_gcode(self):
         self.gcode = ''
