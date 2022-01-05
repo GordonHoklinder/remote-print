@@ -1,34 +1,35 @@
-from dataclasses import dataclass
 import os
+import serial
+import time
+import re
 
+USB_PORT = '/dev/ttyACM0'
+BAUD_RATE = 115200
 
-@dataclass
 class GcodeSender:
-    prusa: None
+    def __init__(self):
+        self.prusa = serial.Serial(USB_PORT, BAUD_RATE, timeout=300)
 
-    def send_gcode(self, gcode: str) -> str:
-        # Testing
+    def read_response(self):
+        response = ''
+        # Wait until the ok message.
+        while len(response) < 3 or response[-3:] != 'ok\n':
+            response += self.prusa.read().decode()
+        print(response)
+        return response
+
+    def send_gcode(self, gcode: str):
         print(gcode)
-        return 'ok'
+        self.prusa.write((gcode + '\n').encode())
+        self.read_response()
 
-    def send_file(self, gcodes: str, filename: str):
-        # Start writing to a file.
-        self.send_gcode(f'M28 {filename}')
-
+    def send_gcodes(self, gcodes: str):
         for gcode in gcodes.split('\n'):
-            if gcode:
+            # Skip comments and empty lines.
+            if gcode and not gcode.startswith(';'):
                 self.send_gcode(gcode)
 
-        # Stop writing to a file.
-        self.send_gcode(f'M29 {filename}')
-
-    def start_file_printing(self, filename: str):
-        self.send_gcode(f'M32 P !{filename}')
-
-    def is_printing(self):
-        return 'Not' not in self.send_gcode('M27')
-
-    def print_file(self, gcodes: str, filename: str):
-        self.send_file(gcodes, filename)
-        self.start_file_printing(filename)
-
+    def print_file(self, gcodes: str):
+        # Initialize head position
+        self.send_gcode('G28')
+        self.send_gcodes(gcodes)

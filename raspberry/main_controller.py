@@ -6,21 +6,18 @@ from time import sleep
 class PrinterState(str, Enum):
     Printing = 'printing',
     Idle = 'idle',
-    Error = 'error'
 
 
 class FileState(str, Enum):
     Done = 'done'
     Running = 'running'
     Waiting = 'waiting'
-    Error = 'error'
 
 
-last_file_index = None
 
 class MainController:
     def __init__(self):
-        self.gcode_sender = GcodeSender(None)
+        self.gcode_sender = GcodeSender()
         init_server_files()
 
     def check_for_new_prints(self):
@@ -28,29 +25,16 @@ class MainController:
         for i in range(len(files_in_queue)):
             filename, file_state = files_in_queue[i]
             if file_state == FileState.Waiting:
-                last_file_index = i
-                rewrite_ith_state(last_file_index, FileState.Running)
-                self.gcode_sender.print_file(read_file(filename), filename)
                 set_state(PrinterState.Printing)
+                rewrite_ith_state(i, FileState.Running)
+                self.gcode_sender.print_file(read_file(filename))
+                set_state(PrinterState.Idle)
+                rewrite_ith_state(i, FileState.Done)
                 return
-
-
-    def update_printer_state(self):
-        if not self.gcode_sender.is_printing():
-            set_state(PrinterState.Idle)
-
-
-
-    def check_for_changes(self):
-        state = get_state()
-        if state == PrinterState.Idle:
-            self.check_for_new_prints()
-        elif state == PrinterState.Printing:
-            self.update_printer_state()
 
     def run(self):
         while True:
-            self.check_for_changes()
+            self.check_for_new_prints()
             sleep(10)
 
 
