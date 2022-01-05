@@ -30,7 +30,9 @@ Clone this repository on your raspberry `git clone https://www.github.com/Gordon
 
 Next, create the file `server_address` using your favourite text editor `vim remote-print/raspberry/server_address` and write there the ssh target (i.e. `username@ip.address.of.the.server`).
 
-Install the dependencies by `pip install -r remote-print/raspberry/requirements.txt` (recommended to a virual environment) and run the program `python3 remote-print/raspberry/main_controller.py`.
+Connect the 3D printer and give the permisions to read and write to the USB port by `sudo chmod 666 /dev/ttyACM0`.
+
+Install the dependencies by `pip install -r remote-print/raspberry/requirements.txt` (recommended to install to a virual environment) and run the program `cd remote-print/raspberry/` and `python3 main_controller.py`.
 
 ## Wrap up
 
@@ -42,10 +44,13 @@ Try to submit a .gcode file on the server and your printer should automatically 
 
 ### Different type of printer
 
-It's possible to use Remote Print with any type of 3D printer, not just Prusa Mini. The only thing you need to do is to replace the gcodes in `remote-print/printing/` with the ones corresponding to your printer.
+It's possible to use Remote Print with any type of 3D printer, not just Prusa Mini. The only thing you need to do is to replace the gcodes in `remote-print/printing/gcode_sender` with the ones corresponding to your printer.
 
 ### Custom location of the server app
 If you did not clone this repository on the server into your home folder, you may be getting errors on your raspberry. To solve this, change the `SERVER_GCODE_LOCATION` in the file `remote-print/raspberry/file_loader.py` appropriately.
+
+### Different USB port
+If the printer is connected to a different port than `ttyACM0` the app will refuse to run. This can be fixed by editing the `USB_PORT` property in the file `remote-print/printing/gcode_sender`.
 
 # Final notes
 
