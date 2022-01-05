@@ -30,8 +30,8 @@ class MainController:
             if file_state == FileState.Waiting:
                 self.last_file_index = i
                 rewrite_ith_state(self.last_file_index, FileState.Running)
-                self.gcode_sender.print_file(read_file(filename), filename)
                 set_state(PrinterState.Printing)
+                self.gcode_sender.print_file(read_file(filename))
                 return
 
 

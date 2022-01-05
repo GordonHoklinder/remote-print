@@ -19,34 +19,23 @@ class GcodeSender:
         print(response)
         return response
 
-    def send_gcode(self, gcode: str) -> str:
+    def send_gcode(self, gcode: str):
         print(gcode)
         self.prusa.write((gcode + '\n').encode())
-        return self.read_response()
+        self.read_response()
 
-    def send_file(self, gcodes: str, filename: str):
-        # Start writing to a file.
-        #self.send_gcode(f'M28 {filename}')
-
+    def send_gcodes(self, gcodes: str):
         for gcode in gcodes.split('\n'):
+            # Skip comments and empty lines.
             if gcode and not gcode.startswith(';'):
                 self.send_gcode(gcode)
 
-        # Stop writing to a file.
-        #self.send_gcode(f'M29 {filename}')
-
-    def start_file_printing(self, filename: str):
-        self.send_gcode(f'M32 P !{filename}')
-
     def is_printing(self):
         return self.printing
-        #return 'Not' not in self.send_gcode('M27')
 
-    def print_file(self, gcodes: str, filename: str):
+    def print_file(self, gcodes: str):
         self.printing = True
+        # Initialize head position
         self.send_gcode('G28')
-        self.send_file(gcodes, filename)
-        #self.start_file_printing(filename)
-        #for chunk in re.findall('.'*100, gcodes):
-        #    self.send_gcode(chunk)
+        self.send_gcodes(gcodes)
         self.printing = False
