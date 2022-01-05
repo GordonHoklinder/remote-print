@@ -9,7 +9,6 @@ BAUD_RATE = 115200
 class GcodeSender:
     def __init__(self):
         self.prusa = serial.Serial(USB_PORT, BAUD_RATE, timeout=300)
-        self.printing = False
 
     def read_response(self):
         response = ''
@@ -30,12 +29,7 @@ class GcodeSender:
             if gcode and not gcode.startswith(';'):
                 self.send_gcode(gcode)
 
-    def is_printing(self):
-        return self.printing
-
     def print_file(self, gcodes: str):
-        self.printing = True
         # Initialize head position
         self.send_gcode('G28')
         self.send_gcodes(gcodes)
-        self.printing = False
