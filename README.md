@@ -1,7 +1,7 @@
 # About
 
 
-This project aims to create an extremly simple way how to print on a 3D printer in a private network. It was developed specifically for Prusa Mini, but as the gcodes used are not specific to this printer, it should work without a problem for most of the printers.
+This project aims to create an extremly simple way how to print on a 3D printer in a private network. It was tested on Prusa Mini, but as the gcodes used are not specific to this printer, it should work without a problem for most of the printers.
 
 For a printer which is in a network where it's possible to set up a public server, Octoprint (see https://www.octoprint.org) may be a better solution.
 However if this is not the case, Octoprint cannot be used and this project provides an alternative in such case.
