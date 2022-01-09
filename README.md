@@ -1,8 +1,7 @@
 # About
 
-The project is currently under a construct and does not work yet. Hopefully it will be finalized by the end of February 2022.
 
-This project aims to create an extremly simple way how to print on a 3D Prusa Mini printer in a private network.
+This project aims to create an extremly simple way how to print on a 3D printer in a private network. It was developed specifically for Prusa Mini, but as the gcodes used are not specific to this printer, it should work without a problem for most of the printers.
 
 For a printer which is in a network where it's possible to set up a public server, Octoprint (see https://www.octoprint.org) may be a better solution.
 However if this is not the case, Octoprint cannot be used and this project provides an alternative in such case.
@@ -44,7 +43,7 @@ Try to submit a .gcode file on the server and your printer should automatically 
 
 ### Different type of printer
 
-It's possible to use Remote Print with any type of 3D printer, not just Prusa Mini. The only thing you need to do is to replace the gcodes in `remote-print/printing/gcode_sender` with the ones corresponding to your printer.
+It's possible to use Remote Print with any type of 3D printer, not just Prusa Mini. For the majorito of printers, it shouln't be a problem, but it may be that your printer does not support the `M20` calibration gcode. If this is the case, the only thing you need to do is to replace the gcode in `remote-print/printing/gcode_sender` with the one corresponding to your printer.
 
 ### Custom location of the server app
 If you did not clone this repository on the server into your home folder, you may be getting errors on your raspberry. To solve this, change the `SERVER_GCODE_LOCATION` in the file `remote-print/raspberry/file_loader.py` appropriately.
