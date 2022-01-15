@@ -3,6 +3,9 @@ from gcode_sender import GcodeSender
 from enum import Enum
 from time import sleep
 
+# Corresponds to 2 minutes latency.
+WAITING_TIME = 120
+
 class PrinterState(str, Enum):
     Printing = 'printing',
     Idle = 'idle',
@@ -35,7 +38,7 @@ class MainController:
     def run(self):
         while True:
             self.check_for_new_prints()
-            sleep(10)
+            sleep(WAITING_TIME)
 
 
 if __name__ == "__main__":

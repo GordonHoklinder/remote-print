@@ -18,9 +18,8 @@ ssh_server_address = get_ssh_server_address()
 
 
 def ssh_execute_command(command: str):
-    connection = fabric.Connection(ssh_server_address)
-    return connection.run(command)
-
+    with fabric.Connection(ssh_server_address) as connection:
+        return connection.run(command)
 
 
 def read_file(filepath: str) -> str:
