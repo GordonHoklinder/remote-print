@@ -41,12 +41,13 @@ The file `forms.py` provides a definition of forms which are passed to the front
 The file `tests.py` contains unit tests for the backend.
 
 ### Front-end files
-
 All the HTML pages are stored in the folder `server/printing/templates`.
 
-The basic structure of each HTML page is defined in the file `layout.html` which is included by all the other HTML files.
+The basic structure of each HTML page is defined in the file `layout.html` which is extended by all the other HTML files.
 
-`form.html` defines a simple pages including a Django form. It's used both in gcode sending and in login.
+`form.html` defines a simple page including a Django form. It's used in login and is entended by `index.html` which defines a landing page from which it is possible to send gcodes.
+
+The last HTML file is `history.html`, which contains a simple table for displaying the history of files send via Remote Print.
 
 The styles are defined in the file `server/printing/static/style.css` which defines the basic styling for all pages.
 
